@@ -31,6 +31,49 @@ int binToDec()
 	return dec;
 }
 
+int decToBin() {
+	int place = 1;
+	int bin;
+	int mod;
+	int div = 1;
+	int dec;
+	int neg = 0;
+
+	printf("\nEnter a number in decimal to convert\n");
+	scanf("%d", &dec);
+
+	if (dec < 0)
+	{
+		neg = 1;
+		dec *= -1;
+	}
+
+	if (dec == 0)
+	{
+		return 0;
+	}
+	
+	div = dec;
+
+	while (div >= 1) {
+		mod = div % 2;
+		div = div / 2;
+		bin += mod * place;
+
+		place *= 10;
+
+	}
+
+	if (neg)
+	{
+		return bin *= -1;
+	}
+	else {
+		return bin;
+	}
+
+}
+
 
 int main()
 {
@@ -50,7 +93,7 @@ int main()
 
 		switch (choice) {
 			case 1: printf("\nThe number in decimal is %d\n\n", binToDec()); break;
-			case 2: break;
+			case 2: printf("\nThe number in binary is %d\n\n", decToBin()); break;
 			case 3: break;
 			case 4: break;
 			case 5: return EXIT_SUCCESS;
