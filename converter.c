@@ -82,7 +82,7 @@ int octToDec() {
 	int cDec;
 	int base = 1;
 	
-	printf("\nEnter a number in binary to convert\n");
+	printf("\nEnter a number in octal to convert\n");
 	scanf("%s", bin);
 
 	size = strlen(bin);
@@ -96,6 +96,67 @@ int octToDec() {
 		 dec += cDec;
 		 i++;
 		 base *= 8;
+	}
+
+	return dec;
+}
+
+int hexToDec() {
+	char bin[20];
+	int size;
+	int i = 1;
+	int dec = 0;
+	int cDec;
+	int base = 1;
+
+	char digit;
+	int realDigit;
+
+	printf("\nEnter a number in hex to convert\n");
+	scanf("%s", bin);
+
+	size = strlen(bin);
+
+	if (size == 0) {
+		return 0;
+	}
+
+	while (i <= size) {
+		digit = bin[size - i];
+
+		if (isdigit(digit) == 0) {
+			switch (digit) {
+				case 'A' :
+				case 'a' :
+					realDigit = 10;
+					break;	
+				case 'B' :
+				case 'b' :
+					realDigit = 11;
+					break;
+				case 'C' :
+				case 'c' :
+					realDigit = 12;
+					break;
+				case 'D' :
+				case 'd' :
+					realDigit = 13;
+					break;
+				case 'E' : 
+				case 'e' :
+					realDigit = 14;
+					break;
+			}
+
+			cDec = realDigit * base;
+		}
+		else {
+			cDec = (digit - '0') * base;
+		}
+
+		dec += cDec;
+		i++;
+		base *= 16;
 	}
 
 	return dec;
@@ -135,7 +196,7 @@ int main()
 			case 2: printf("\nThe number in binary is %d\n\n", decToBin()); break;
 			case 3: printf("\nThe number in decimal is %d\n\n", octToDec()); break;
 			case 4: printf("\nThe number in octal is %o\n\n", numberCollect()); break;
-			case 5: printf("\nThe number in decimal is %d\n\n", numberCollect()); break;
+			case 5: printf("\nThe number in decimal is %d\n\n", hexToDec()); break;
 			case 6: printf("\nThe number in hex is %X\n\n", numberCollect()); break;
 			case 7: return EXIT_SUCCESS;
 			default: printf("\nInvalid choice\n\n");
