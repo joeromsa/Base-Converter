@@ -169,6 +169,10 @@ int numberCollect()
 	printf("\nEnter a number in decimal to convert\n");
 	scanf("%d", &dec);
 
+	if (dec < 0) {
+		dec = dec * -1;
+	}
+
 	return dec;
 }
 
